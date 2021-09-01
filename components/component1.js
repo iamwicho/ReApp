@@ -1,15 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-//Here we are adding the component.js so we can use it in this js
-import Component1 from './components/component1';
-//Then we just need to call it using "<Component1/>" in the js part that you what to.
-
-export default function App() {
+export default function component1() {
   return (
     <View style={styles.container}>
-      <Component1/>
+      <Text style={styles.title}>Hola, me llamo Luis Fernando 😄</Text>
+      <StatusBar style="auto" />
     </View>
   );
 }
