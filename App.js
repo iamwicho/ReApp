@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   Box,
   Text,
@@ -8,11 +8,20 @@ import {
   Heading,
   Container,
   Stack,
-  VStack,
-  Button
+  Button,
+  Pressable,
+  Input,
+  Icon
 } from "native-base";
+import {Alert} from "react-native"
+import {MaterialIcons} from "@expo/vector-icons"
+
+
 
 export default function App() {
+  const [message, setMessage] = useState("button")
+  const [isHidden, setIsHidden] = useState("password")
+
   const theme = extendTheme({
     colors: {
       primary: {
@@ -31,8 +40,67 @@ export default function App() {
   });
 
   const Example = () => {
-    return <Button onPress={() => console.log("hola mundo")}>PRIMARY</Button> 
+    return <Button onPress={() => setMessage(message === "button" ? "pressable" : "button")}>PRIMARY</Button> 
   }
+
+
+  const ExamplePressable = () => {
+    return (
+      <Pressable p={2} borderWidth={1} onPress={()=>{
+        console.log('hello')
+      }}
+      
+      >
+        <Text> Hello World!</Text>
+      </Pressable>
+    )
+
+  }
+
+  const Example_input = () => {
+    return(
+      <Input 
+      placeholder="Default Input"
+      type={isHidden}
+      InputRightElement={
+        <Pressable onPress={() => setIsHidden(isHidden === "Text")} > 
+        <Icon 
+          as= {<MaterialIcons name="visibility-off"></MaterialIcons>}
+          size={5}
+          mr="2"
+          color="muted.400"
+          >
+          </Icon>
+        </Pressable>
+      }
+      />
+    )
+  }
+
+  const Example_input_2 = () => {
+    return(
+      <Input 
+      placeholder="Default Input"
+      type="password"
+      secureTextEntry={true}
+      
+      
+
+      InputRightElement={
+       <Pressable p={2} borderWidth={1} onPress={() =>{console.log('helllo input 2')}}>
+
+       <Icon 
+        as= {<MaterialIcons name="visibility-off"/>}
+        size={5}
+        >
+
+        </Icon>
+        </Pressable>
+      }
+      />
+    )
+  }
+
 
   return (
     <NativeBaseProvider theme={theme}>
@@ -42,21 +110,29 @@ export default function App() {
         alignItems="center"
         justifyContent="center"
       >
-        <Text>App</Text>
+        <Text>This is my App</Text>
       </Box>
       <Center flex={8}>
         <Container>
-          <Heading> A component library for the <Heading color="emerald.400"> React Ecosystem</Heading>
+          <Heading>A component library for the <Heading color="emerald.400"> React Ecosystem</Heading>
           </Heading>
-          <Heading p={4} fontSize="md" fontWeight="hairline"> NativeBase is a simple, modular and accessible component library
+          <Heading p={4} fontSize="md" fontWeight="100"> NativeBase is a simple, modular and accessible component library
             that gives you building blocks to build you React applications.
           </Heading>
-          <VStack alignItems="center" space={3}>
-              <Center bg="primary.400" size={16} _text={{color:"white"}}> Text </Center>
-              <Center bg="primary.200" size={16} > Text </Center>
-              <Center bg="primary.500" size={16} > Text </Center>
-          </VStack>
-          <Example></Example>
+
+          <Box alignItems="center">
+
+          <Stack space={5} w="100" >
+          <Example/>
+          <ExamplePressable/>
+          <Example_input/>
+          <Example_input_2/>
+          
+          </Stack>
+          <Text> {message} </Text>
+          </Box>
+          
+
 
         </Container>
       </Center>
