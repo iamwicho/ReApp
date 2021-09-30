@@ -12,26 +12,33 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 
 export const InputPassword = () => {
-  const [isHidden, setIsHidden] = useState(false);
-  const [valuePass, setValue] = useState("");
-  const handleClick = () => setIsHidden(!isHidden);
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
+  const [isHidden, setIsHidden] = useState(false)
+  const [value, setValue] = useState({
+    nickname: '',
+    password: ''
+  })
+
+  const handleClick = () => setIsHidden(!isHidden)
+
   const Submit = () => {
-    return <Button onPress={() => console.log(valuePass)}>Login</Button>;
+    return <Button width="150px" onPress={() => console.log(value)}>Login</Button>;
   };
   return (
     <Container>
-      <Stack space={5} w="100%" direction="column">
+      <Stack space={2} width="300px" alignItems="center">
         <Heading pt={4} fontweight="100" size="sm">
           Login for application
         </Heading>
-        <Input placeholder="Nickname" />
+        <Input 
+          placeholder="Nickname" 
+          width="250px"
+          onChangeText={(text) => setValue({...value, nickname:text})} />
         <Input
           placeholder="Password"
+          width="250px"
           type={isHidden ? "text" : "password"}
-          onChange={handleChange}
+          onChangeText={(text) => setValue({...value, password:text})}
+
           InputRightElement={
             <Pressable p={2} borderWidth={0} onPress={handleClick}>
               <Icon
@@ -48,8 +55,9 @@ export const InputPassword = () => {
           }
         />
         <Submit />
-        <Text fontsize="xs">Hola {valuePass}</Text>
       </Stack>
+      
     </Container>
-  );
-};
+    
+  )
+}

@@ -9,6 +9,7 @@ import {
   Container,
   Stack,
   Button,
+  Row,
 } from "native-base";
 import { InputPassword } from "./components/inputPassword";
 
@@ -40,20 +41,20 @@ export default function App() {
       >
         <Text>This is my App</Text>
       </Box>
-      <Center flex={8}>
+      <Center flex={9}>
         <Container>
           <Heading>
-            A component library for the{" "}
+            A component library for the
             <Heading color="emerald.400"> React Ecosystem</Heading>
           </Heading>
-          <Heading p={4} fontSize="md" fontWeight="100">
-            {" "}
+          <Heading p={2} fontSize="md" fontWeight="100">
+            
             NativeBase is a simple, modular and accessible component library
             that gives you building blocks to build you React applications.
           </Heading>
 
           <Box alignItems="center">
-            <Stack space={5}>
+            <Stack space={3}>
               <InputPassword />
             </Stack>
           </Box>
