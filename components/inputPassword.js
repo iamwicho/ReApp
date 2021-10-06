@@ -10,6 +10,7 @@ import {
   Button,
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
+import axios, { Axios } from 'axios';
 
 export const InputPassword = () => {
   const [isHidden, setIsHidden] = useState(false)
@@ -20,9 +21,26 @@ export const InputPassword = () => {
 
   const handleClick = () => setIsHidden(!isHidden)
 
+  const handleSubmit = async () => 
+  {
+    const formData = new FormData();
+    formData.append('option','loginQuery')
+    formData.append('nickname', value.nickname)
+    formData.append('password', value.password)
+
+    const response = await axios.post
+    {
+      'http://localhost/MovileApp/GitHub/ReApp/index.php',
+      formData,
+      {headers: {'Content-type': 'multipart/form-data'}}
+    }
+    console.log(response)
+  }
+  
   const Submit = () => {
-    return <Button width="150px" onPress={() => console.log(value)}>Login</Button>;
+    return <Button width="150px" onPress={handleSubmit}>Login</Button>;
   };
+
   return (
     <Container>
       <Stack space={2} width="300px" alignItems="center">
