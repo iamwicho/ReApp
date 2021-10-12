@@ -7,11 +7,16 @@ import {
   Center,
   Heading,
   Container,
-  Stack,
   Button,
   Row,
 } from "native-base";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import { Component1 } from "./components/component1";
 import { InputPassword } from "./components/inputPassword";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const theme = extendTheme({
@@ -32,34 +37,18 @@ export default function App() {
   });
 
   return (
-    <NativeBaseProvider theme={theme}>
-      <Box
-        flex={1}
-        bg="primary.900"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Text>This is my App</Text>
-      </Box>
-      <Center flex={9}>
-        <Container>
-          <Heading>
-            A component library for the
-            <Heading color="emerald.400"> React Ecosystem</Heading>
-          </Heading>
-          <Heading p={2} fontSize="md" fontWeight="100">
-            
-            NativeBase is a simple, modular and accessible component library
-            that gives you building blocks to build you React applications.
-          </Heading>
+    <NavigationContainer>
 
-          <Box alignItems="center">
-            <Stack space={3}>
-              <InputPassword />
-            </Stack>
-          </Box>
-        </Container>
-      </Center>
-    </NativeBaseProvider>
-  );
+      <NativeBaseProvider theme={theme}>
+
+              <Stack.Navigator>
+                <Stack.Screen name="Home" component={InputPassword}/>
+                <Stack.Screen name="Details" component={Component1}/>
+              </Stack.Navigator>
+
+      </NativeBaseProvider>
+
+    </NavigationContainer>
+    
+  )
 }

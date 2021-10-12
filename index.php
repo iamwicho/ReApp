@@ -5,6 +5,7 @@
     echo "Conexion Successfully";
 
     $sql = "SELECT * FROM users where name = '".$_POST["nickname"]."' and password = '".$_POST["password"]."'";
+    
 
     if($result = $conn->query($sql))
     {

@@ -10,9 +10,9 @@ import {
   Button,
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
-import axios, { Axios } from 'axios';
+import axios from "axios";
 
-export const InputPassword = () => {
+export const InputPassword = ({navigation}) => {
   const [isHidden, setIsHidden] = useState(false)
   const [value, setValue] = useState({
     nickname: '',
@@ -29,11 +29,12 @@ export const InputPassword = () => {
     formData.append('password', value.password)
 
     const response = await axios.post
-    {
-      'http://localhost/MovileApp/GitHub/ReApp/index.php',
+    (
+      'http://192.168.1.7/MovileApp/GitHub/ReApp/index.php',
       formData,
       {headers: {'Content-type': 'multipart/form-data'}}
-    }
+    )
+    navigation.navigate('Details')
     console.log(response)
   }
   

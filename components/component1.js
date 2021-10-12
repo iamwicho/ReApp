@@ -1,28 +1,25 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Center, NativeBaseProvider, Text } from 'native-base';
 
-export default function component1() {
+
+export  const Component1 = ({navigation}) => 
+{
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hola, me llamo Luis Fernando 😄</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
     </View>
   );
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#094D92',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  title:{
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 30,
-    textAlign: 'center'
-  },
-});
+export default () =>
+{
+  return (
+    <NativeBaseProvider>
+        <Center flex={1} px="3">
+            <Component1/>
+        </Center>
+    </NativeBaseProvider>
+  )
+}
+ 
