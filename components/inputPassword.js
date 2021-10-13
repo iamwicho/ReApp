@@ -29,7 +29,7 @@ export const InputPassword = ({navigation}) => {
 
     const response = await axios.post
     (
-      'http://192.168.1.7/MovileApp/GitHub/ReApp/index.php',
+      'http://192.168.1.7/Proyects/GitHub/ReApp/index.php',
       formData,
       {headers: {'Content-type': 'multipart/form-data'}}
     )
