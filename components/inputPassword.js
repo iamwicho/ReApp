@@ -33,8 +33,15 @@ export const InputPassword = ({navigation}) => {
       formData,
       {headers: {'Content-type': 'multipart/form-data'}}
     )
-    navigation.navigate('Details')
-    console.log(response)
+    
+    console.log(response.data.result)
+
+    let isUser = response.data.result
+      if (isUser == 2)
+      {
+        navigation.navigate('Details')
+      }
+
   }
   
   const Submit = () => {
