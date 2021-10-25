@@ -8,6 +8,7 @@ import {
   Heading,
   Text,
   Button,
+  
 } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import axios from "axios";
@@ -23,25 +24,27 @@ export const InputPassword = ({navigation}) => {
 
   const handleSubmit = async () => {
     const formData = new FormData();
-    formData.append("option", "loginQuery");
+    //formData.append("option", "loginQuery");
     formData.append("nickname", value.nickname);
     formData.append("password", value.password);
 
     const response = await axios.post
     (
-      'http://192.168.1.7/Proyects/GitHub/ReApp/index.php',
+      'http://192.168.1.6/Proyects/GitHub/ReApp/index.php',
       formData,
       {headers: {'Content-type': 'multipart/form-data'}}
     )
     
-    console.log(response.data.result)
+    //console.log(response.data.result)
 
     let isUser = response.data.result
-      if (isUser == 2)
-      {
-        navigation.navigate('Details')
-      }
-
+      console.log(typeof(isUser))
+      navigation.navigate('Details')
+    
+    //if (isUser == 2)
+      //{
+      //  navigation.navigate('Details')
+      //}
   }
   
   const Submit = () => {
